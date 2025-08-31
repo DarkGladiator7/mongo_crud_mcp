@@ -6,3 +6,6 @@ class User(BaseModel):
     name: str
     email: str
     age: int
+
+class DBRequest(BaseModel):
+    db_name: str

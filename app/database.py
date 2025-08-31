@@ -15,3 +15,19 @@ async def list_databases():
 def get_database(db_name: str):
     """Return a MongoDB database handle."""
     return client[db_name]
+
+async def create_database(db_name: str):
+    """
+    Create a new MongoDB database by inserting a dummy document.
+    Prevents duplicate creation if DB already exists.
+    """
+    try:
+        existing_dbs = await client.list_database_names()
+        if db_name in existing_dbs:
+            return {"success": False, "message": f"Database '{db_name}' already exists"}
+
+        db = client[db_name]
+        await db["init_collection"].insert_one({"created": True})
+        return {"success": True, "message": f"Database '{db_name}' created successfully"}
+    except Exception as e:
+        return {"success": False, "message": f"Error creating database: {str(e)}"}
