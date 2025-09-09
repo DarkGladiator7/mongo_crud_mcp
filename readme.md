@@ -1,76 +1,34 @@
-# 🚀 MCP Mongo Multi-DB CRUD + LLM Agent  
+🚀 MCP Mongo Multi-DB CRUD + LLM Agent
 
-This project is a **MongoDB CRUD dashboard with multi-database support**, powered by **FastAPI**, **Streamlit**, and an **LLM Agent (Groq LLaMA)**.  
+This project is a MongoDB CRUD system with multi-database support, powered by FastMCP.
 
-It allows you to:  
-- Connect to **multiple MongoDB databases**  
-- Perform **CRUD operations** on users  
-- Create databases dynamically  
-- Either use the **Streamlit UI** to enter and manage data manually  
-- Or interact with the system using **natural language instructions**, automatically translated into CRUD actions by the LLM  
+It allows you to:
 
----
+Connect to multiple MongoDB databases
 
-## ⚙️ Tools & Technologies  
+Perform CRUD operations on users via tools
 
-- **FastAPI** – Backend API for CRUD operations  
-- **Motor (Async MongoDB Driver)** – Non-blocking DB access  
-- **MongoDB** – Database  
-- **Streamlit** – Frontend Dashboard  
-- **Requests** – API communication  
-- **Groq LLaMA API** – Natural language to structured action translation  
-- **Python-dotenv** – Environment variable management  
+Create databases dynamically
 
----
-
-## 📂 Project Structure  
-
-```
-app/
- ├── crud.py          # CRUD operations
- ├── database.py      # MongoDB connection
- ├── models.py        # Pydantic models
- ├── routes.py        # FastAPI routes
- ├── main.py          # FastAPI entrypoint
- └── cli_agent.py     # CLI agent for natural language → CRUD
-
-agent/
- └── llm_setup.py     # LLM API setup
-
-streamlit_app/
- └── dashboard.py     # Streamlit UI
-```
-
----
-
-## 🚀 Run Instructions  
-
-1. **Install requirements**  
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. **Set environment variables** in `.env`  
-   ```env
-   MONGO_URL=mongodb://localhost:27017
-   GROQ_API_KEY=your_groq_api_key
-   ```
-
-3. **Start FastAPI backend**  
-   ```bash
-   uvicorn app.main:app --reload
-   ```
-
-4. **Run Streamlit dashboard**  
-   ```bash
-   streamlit run streamlit_app/dashboard.py
-   ```
-
-5. **Optional: Run CLI LLM Agent**  
-   ```bash
-   python app/cli_agent.py
-   ```
-
----
+Interact with the system using CLI commands, with the LLM agent selecting the appropriate tool based on natural language input
 
 
+
+🚀 Run Instructions
+
+Install requirements
+
+pip install -r requirements.txt
+
+Set environment variables in .env
+
+MONGO_URL=mongodb://localhost:27017
+OPENAI_API_KEY=your_api_key
+
+Start MCP server
+
+python -m app.mcp_server
+
+Run MCP client (CLI agent)
+
+python app/client.py
